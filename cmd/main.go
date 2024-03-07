@@ -23,7 +23,9 @@ func main() {
 		log.Fatal("Error loading env variables")
 	}
 	region := os.Getenv("AWS_REGION")
-	awsSession, err := session.NewSession(&aws.Config{Region: aws.String(region)})
+	awsSession, err := session.NewSession(&aws.Config{
+		Region: aws.String(region)})
+
 	if err != nil {
 		return
 	}
@@ -31,7 +33,7 @@ func main() {
 	lambda.Start(handler)
 }
 
-const tableName = "go-aws-lambda"
+const tableName = "go-serverless-yt"
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	switch req.HTTPMethod {
